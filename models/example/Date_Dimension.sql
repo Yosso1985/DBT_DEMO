@@ -17,7 +17,8 @@ WITH CTE AS (
     THEN 'SUMMER'
     WHEN MONTH (TO_TIMESTAMP(STARTED_AT)) IN (9,10,11)
     THEN 'FALL'      
-    END AS SEASON
+    END AS SEASON,
+    {{ seasonfunc('STARTED_AT') }}
     FROM {{ source('DEMO', 'BIKE') }}    
     WHERE STARTED_AT <>'started_at'
 )
